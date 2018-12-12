@@ -17,14 +17,14 @@ public class MyRepositoryImpl implements MyRepository {
 	private Map<String, String> storage = new HashMap<>();
 
 	@Override
-	@Cacheable(cacheNames = "items", key = "#key.id")
+	@Cacheable(cacheNames = "items", key = "#key")
 	public String getItem(String key) {
 		LOGGER.info("Storage get {}", key);
 		return storage.get(key);
 	}
 
 	@Override
-	@CacheEvict(cacheNames = "items", key = "#key.id")
+	@CacheEvict(cacheNames = "items", key = "#key")
 	public void putItem(String key, String value) {
 		storage.put(key, value);
 	}
